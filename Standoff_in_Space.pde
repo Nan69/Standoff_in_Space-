@@ -36,7 +36,7 @@ void setup() {
   image(space, 500, 300, 1000, 1000);
    user();
  shoot();
- // basicE();  
+  basicE();  
     if(Ecount == 0){
       level =+1;
       
@@ -117,12 +117,12 @@ void setup() {
       
       if (bullet == 1){
       ellipse(pbx,pby,10,10);
-    pby=pby-40;
+    pby=pby-30;
     pbx = playerX;
     
     
       }
-    if(pby == 0){
+    if(pby <= 0){
       bullet = 0;
       pby = playerY;
       
@@ -132,12 +132,14 @@ void setup() {
     }
     
       
-      
+       if (abs(pbx-basicEX)<40 && abs(pby-basicEY)<40) {
+    basicEX = -50;
+  }
       
     
        
-      //pby = playerY;
-     // pbx =playerX;
+      
+  
       
     
   }
