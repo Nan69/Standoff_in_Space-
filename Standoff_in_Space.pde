@@ -12,7 +12,7 @@ PImage basicE;
 float bebx;
 float beby;
 int bullet;
-float  bulletT;
+int BEbullet;
 void setup() {
   size (1000, 600);
   space = loadImage("Space.jpg");
@@ -169,12 +169,43 @@ void setup() {
     }
     
     
-    if(random(40) > 35){
+  
+      
+      BEbullet = 1;
       
       
       
       
       
       
-    }
-  }
+    
+  
+if(BEbullet == 1){
+  
+  ellipse(bebx,beby,10,10);
+    beby=basicEY-30;
+    
+  
+  
+  
+  
+  
+  
+  
+  
+}
+
+if(beby <= 0){
+      BEbullet = 0;
+      beby = basicEY;
+
+
+
+
+}
+
+
+
+
+}
+  
