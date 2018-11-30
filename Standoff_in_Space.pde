@@ -25,6 +25,7 @@ float basicEX2;
 float basicEX3;
 void setup() {
   size (1000, 600);
+
   space = loadImage("Space.jpg");
   player = loadImage("Goodship.png");
   basicE = loadImage("bad1.png");
@@ -62,8 +63,17 @@ void draw() {
  
    
    if(level == 0){
+     background(#333F46);
+     fill(#030303);
+   rect (500,100,800,100);
+     textSize(50);
+     fill(#E105FA);
      
-     
+     text("Welcome to Standoff in space!",145,115);
+     text("instructions:",150,200);
+     text("Press R to shoot",150,250);
+     text("Press w,a,s,d to move your character",50,300);
+     text("Press ENTER to join the fight", 150,500);
      
      
      if(key == ENTER){
@@ -81,8 +91,7 @@ void draw() {
   user();
   shoot();
   basicE();
-  textSize(20);
-  text("PRESS R TO SHOOT",500,50);
+
   if(Ecount == 1){
     level = 2;
     
