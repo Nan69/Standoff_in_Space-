@@ -86,7 +86,7 @@ void draw() {
  textSize(20);
   text(lives, 50, 50);
  text("Lives",35,30);
- 
+ fill(#FFFFFF);
    if(lives == 0){
   level = -1;
      
@@ -95,7 +95,19 @@ void draw() {
      
    }
    if(level == 0){
+      background(#333F46);
+     fill(#030303);
+   rect (500,100,800,100);
+     textSize(50);
+     fill(#E105FA);
      
+     
+     text("Welcome to Standoff in space!",145,115);
+     text("Instructions:",150,200);
+     text("Press R to shoot",150,250);
+     text("Press W,A,S,D to move your character",50,300);
+     text("Press ENTER to join the fight", 150,500);
+
      
      
      
@@ -138,15 +150,15 @@ leveltime = 60;
   
   user();
 shoot();
-basicE();
-basicE2();
-basicE3();
+basicE(); 
+basicE2(); 
+basicE3(); 
  
 
 if(Ecount >= 3){
   level = 3;
   leveltime =0;
-  Ecount = 0;
+ 
   
   
   
@@ -159,7 +171,10 @@ else{
   textSize(20);
   text("LEVEL 2",450, 300);
   text("YOU CAN PRESS ENTER TO SKIP THE WAIT",300,100);
- 
+ basicEX = 100;
+ basicEX2 = 300;
+ basicEX3 = 900;
+  Ecount = 0;
 }
 
 
@@ -177,10 +192,16 @@ leveltime = 60;
   chaser2();
   shoot();
   chaser3();
-  chaser4();
   
   
   
+  if(Ecount ==3){
+  level = 4;
+  
+  leveltime =0;
+  
+  
+}
   
   
   
@@ -191,21 +212,17 @@ leveltime = 60;
   else{
     textSize(20);
     text("LEVEL 3",450,300);
-  
-    
+   Ecount = 0;
+    chaserX = 100;
+    chaserX2 = 400;
+    chaserX3 = 700;
   }
 }
 
 
 
 
-if(Ecount ==4){
-  level = 4;
-  Ecount = 0;
-  leveltime =0;
-  
-  
-}
+
 
 
 if(level ==4){
