@@ -69,7 +69,7 @@ void setup() {
   chaserX4 = random(1000);
   chaserY4 = 50;
   Ecount = 0;
-  level= 0;
+  level= -1;
   lives = 3;
   hittimer = 30;
   leveltime = leveltime+1;
@@ -77,7 +77,6 @@ void setup() {
   Chealth2 = 1;
   Chealth3 = 1;
   Chealth4 = 1;
-  hittimer = hittimer+1;
 }
 
 void draw() {
@@ -86,28 +85,20 @@ void draw() {
  textSize(20);
   text(lives, 50, 50);
  text("Lives",35,30);
- fill(#FFFFFF);
+ 
    if(lives == 0){
   level = -1;
      
    }
    if(level == -1){
-     
+     chaser();
+     user();
+     shoot();
+     chaser2();
+     chaser3();
    }
    if(level == 0){
-      background(#333F46);
-     fill(#030303);
-   rect (500,100,800,100);
-     textSize(50);
-     fill(#E105FA);
      
-     
-     text("Welcome to Standoff in space!",145,115);
-     text("Instructions:",150,200);
-     text("Press R to shoot",150,250);
-     text("Press W,A,S,D to move your character",50,300);
-     text("Press ENTER to join the fight", 150,500);
-
      
      
      
@@ -132,7 +123,7 @@ void draw() {
   if(Ecount == 1){
     level = 2;
     leveltime = 0;
-    Ecount = 0;
+    
     
     
   }
@@ -141,24 +132,22 @@ void draw() {
 
 if(level == 2){
  leveltime +=1;
- 
  if(key == ENTER){
-leveltime = 60;
-
+leveltime = 30;
  }
-  if(leveltime >=60){
+  if(leveltime >=30){
   
-  user();
+  user(); playerX = 500;
 shoot();
-basicE(); 
-basicE2(); 
-basicE3(); 
+basicE();
+basicE2();
+basicE3();
  
 
-if(Ecount >= 3){
+if(Ecount == 3){
   level = 3;
-  leveltime =0;
- 
+  
+  
   
   
   
@@ -171,68 +160,11 @@ else{
   textSize(20);
   text("LEVEL 2",450, 300);
   text("YOU CAN PRESS ENTER TO SKIP THE WAIT",300,100);
- basicEX = 100;
- basicEX2 = 300;
- basicEX3 = 900;
-  Ecount = 0;
 }
 
 
 }
-if(level ==3){
-   leveltime +=1;
-   
-   
- if(key == ENTER){
-leveltime = 60;
- }
-  if(leveltime>=60){
-  user(); 
-  chaser();
-  chaser2();
-  shoot();
-  chaser3();
-  
-  
-  
-  if(Ecount ==3){
-  level = 4;
-  
-  leveltime =0;
-  
-  
-}
-  
-  
-  
-  
-  
-  }
-  
-  else{
-    textSize(20);
-    text("LEVEL 3",450,300);
-   Ecount = 0;
-    chaserX = 100;
-    chaserX2 = 400;
-    chaserX3 = 700;
-  }
-}
 
-
-
-
-
-
-
-if(level ==4){
-
-  
-  
-  
-  
-  
-}
 }
 
 void user() {
@@ -263,23 +195,12 @@ void user() {
   //A playerY +=0;
 
   //  }
-  if (playerX >= 1040) {
+  if (playerX == 1040) {
     playerX =980;
   }
-  if (playerX <= -40) {
+  if (playerX == -40) {
     playerX =20;
   }
-if(playerY <=-40){
-playerY = 20;
-
-
-
-}
-if(playerY >= 620){
-  playerY =590;
-  
-  
-}
 }
 
 
@@ -302,72 +223,59 @@ void shoot() {
     pby = playerY;
   }
 
-if(hittimer >=30){
+
   if (abs(pbx-basicEX)<40 && abs(pby-basicEY)<40) {
     basicEX = -200;
     Ecount = Ecount +1;
-    hittimer =0;
   }
-}
-if(hittimer >=30){
+
   if (abs(pbx-basicEX2)<40 && abs(pby-basicEY)<40) {
     basicEX2 = -200;
     Ecount = Ecount + 1;
-    hittimer =0;
   }
-}
-if(hittimer >=30){
   if (abs(pbx-basicEX3)<40 && abs(pby-basicEY)<40) {
     basicEX3 = -200;
     Ecount = Ecount +1;
-    hittimer = 0;
+    
   }
-}
-if(hittimer >=30){
+
 if(abs(pbx-chaserX2)<40 && abs(pby-chaserY2)<40){
 chaserX2 = -300;
 chaserX2 +=0;
 Ecount = Ecount + 1;
 Chealth2 =0;
-hittimer = 0;
 }
-}
-if(hittimer >=30){
+
 if(abs(pbx-chaserX3)<40 && abs(pby-chaserY3)<40){
 chaserX3 = -300;
 chaserX3 +=0;
 Ecount = Ecount + 1;
 Chealth3 =0;
-hittimer = 0;
 }
-}
-if(hittimer >=30){
+
 if(abs(pbx-chaserX4)<40 && abs(pby-chaserY4)<40){
 chaserX4 = -300;
 chaserX4 +=0;
 Ecount = Ecount + 1;
 Chealth4 =0;
-hittimer = 0;
 }
-}
-if(hittimer >=30){
+
+
 if(abs(pbx-chaserX)<40 && abs(pby-chaserY)<40){
 chaserX = -300;
 chaserX +=0;
 Ecount = Ecount + 1;
 Chealth =0;
-hittimer = 0;
 }
-}
-if(hittimer >=30){
+
+
 if(abs(pbx-chaserX)<40 && abs(pby-chaserY)<40){
 chaserX = -300;
 chaserX +=0;
 Ecount = Ecount + 1;
 Chealth =0;
-hittimer = 0;
 }
-}
+
 
 
 
