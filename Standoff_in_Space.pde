@@ -4,12 +4,14 @@ float playerX;
 float playerY;
 PImage space;
 PImage player;
+PImage boss1;
 int Cspeed;
 int Chealth;
 float pbx;
 float pby;
 float basicEY;
 float basicEX;
+float b1live;
 PImage basicE;
 float bebx;
 float beby;
@@ -19,7 +21,7 @@ float bebx3;
 float beby3;
 float basicEY2;
 float basicEY3;
-
+float Bbtimer;
 float chaserX;
 float chaserY;
 float chaserX2;
@@ -28,24 +30,30 @@ float chaserX3;
 float chaserY3;
 float chaserX4;
 float chaserY4;
+float b1hp;
 int Chealth2;
 int Chealth3;
 int Chealth4;
-
+float b1bx;
+float b1by;
 PImage chaser;
 int bullet;
 int BEbullet;
 int lives;
 int hittimer;
+float boss1X;
+float boss1Y;
 float basicEX2;
 float basicEX3;
 float leveltime;
+float B1bullet;
 void setup() {
   size (1000, 600);
   space = loadImage("Space.jpg");
   player = loadImage("Goodship.png");
   basicE = loadImage("bad1.png");
   chaser = loadImage("chaser.png");
+  boss1 = loadImage("boss1.png");
   imageMode(CENTER);
   rectMode(CENTER);
   playerX = 500;
@@ -53,9 +61,13 @@ void setup() {
   pbx = playerX;
   pby = playerY;
   bebx =basicEX;
+  boss1X = 500;
+  boss1Y =150;
   beby = 100;
   beby2 = 100;
   beby3 = 100;
+  b1bx =boss1X;
+  b1by = boss1Y;
   basicEX = random(1000);
   basicEX2 = random(1000);
   basicEX3 = random(1000);
@@ -78,6 +90,9 @@ void setup() {
   Chealth3 = 1;
   Chealth4 = 1;
   hittimer = hittimer+1;
+  Bbtimer =60;
+  Bbtimer +=1;
+  b1hp =10;
 }
 
 void draw() {
@@ -92,7 +107,9 @@ void draw() {
      
    }
    if(level == -1){
-     
+     b1();
+     user();
+     shoot();
    }
    if(level == 0){
       background(#333F46);
@@ -367,6 +384,23 @@ Ecount = Ecount + 1;
 Chealth =0;
 hittimer = 0;
 }
+}
+
+if(abs(pbx-b1bx)<40 && abs(pby-b1by)<40){
+Bbtimer =0;
+B1bullet = 0;
+
+}
+
+if(hittimer >=30){
+if(abs(pbx-boss1X)<150 && abs(pby-boss1Y)<150){
+b1hp -=1;
+
+
+
+hittimer = 0;
+}
+
 }
 
 
@@ -827,3 +861,89 @@ void chaser4(){
   }
   
 }
+
+
+
+
+void b1(){
+  
+  image(boss1,boss1X,boss1Y,300,300);
+  
+  
+  if(Bbtimer >=60){
+  
+  B1bullet =1;
+  
+  if(B1bullet == 1){
+    ellipse(b1bx,b1by,20,20);
+   if(playerX <= b1bx){
+    
+    
+    b1bx -=5;
+   
+   
+   
+   
+   
+   
+   
+   
+   }
+   if(playerX >= b1bx){
+     
+     b1bx +=5;
+     
+     
+     
+     
+     
+   }
+   
+   
+   if(playerY > b1by){
+   b1by += 5;
+   
+   }
+   
+   
+   
+   if(playerY < b1by){
+   b1by -=5;
+   
+   }
+  
+   
+   
+   
+   
+   
+  }
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  if(b1hp <= 0){
+  Ecount +=1;
+  
+  lives +=1;
+  
+  
+  
+  
+  
+  
+  
+  }
+  
+  
+  }
